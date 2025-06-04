@@ -360,6 +360,17 @@ def main():
     )
     assigner.print_results(assignments_w, score_w, details_w, "weighted")
 
+    # Check satisfaction
+    satisfied, unsatisfied = assigner.check_satisfaction_constraints(
+        assignments, max_rank_allowed=3
+    )
+    if satisfied:
+        print("\n✅ All players got their top 3 choices!")
+    else:
+        print(f"\n⚠️  Some players got lower choices:")
+        for issue in unsatisfied:
+            print(f"   - {issue}")
+
 
 if __name__ == "__main__":
     main()
